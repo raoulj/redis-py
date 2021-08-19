@@ -1588,6 +1588,13 @@ class Commands:
         "Return a boolean indicating if ``value`` is a member of set ``name``"
         return self.execute_command('SISMEMBER', name, value)
 
+    def smismember(self, name, *args):
+        """
+        Returns a list of a booleans indicating if each pairwise member of 
+        ``args`` is a member of set ``name``.
+        """
+        return self.execute_command('SMISMEMBER', name, *args)
+
     def smembers(self, name):
         "Return all members of the set ``name``"
         return self.execute_command('SMEMBERS', name)
