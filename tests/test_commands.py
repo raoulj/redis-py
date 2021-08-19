@@ -1393,6 +1393,12 @@ class TestRedisCommands:
         assert r.sismember('a', '3')
         assert not r.sismember('a', '4')
 
+    def test_smismember(self, r):
+        r.sadd('a', '1', '2', '3')
+        assert r.smismember('a', '1', '2', '3') == [True, True, True]
+        assert r.smismember('a', '1', '0', '3') == [True, False, True]
+        assert r.smismember('a', '4', '5', '6') == [False, False, False]
+
     def test_smembers(self, r):
         r.sadd('a', '1', '2', '3')
         assert r.smembers('a') == {b'1', b'2', b'3'}
